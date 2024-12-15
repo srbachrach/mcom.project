@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+        .answer-box {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .center {
+            text-align: center;
+        }
+        .home-button {
+            background-color: #008CBA; /* Blue color */
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #005f73; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Grammar Test</h1>
+
+    <form id="grammarTestForm">
+        <!-- Question 1 -->
+        <div class="question-container">
+            <p>1. Choose the correct form of the verb:</p>
+            <p>She _____ a book every day.</p>
+            <label>
+                <input type="radio" name="q1" value="correct"> reads
+            </label><br>
+            <label>
+                <input type="radio" name="q1" value="incorrect"> read
+            </label><br>
+            <div id="result-q1" class="answer-box"></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-container">
+            <p>2. Choose the correct preposition:</p>
+            <p>She is good _____ cooking.</p>
+            <label>
+                <input type="radio" name="q2" value="correct"> at
+            </label><br>
+            <label>
+                <input type="radio" name="q2" value="incorrect"> in
+            </label><br>
+            <div id="result-q2" class="answer-box"></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-container">
+            <p>3. Choose the correct form of the adjective:</p>
+            <p>This is the _____ book I have ever read.</p>
+            <label>
+                <input type="radio" name="q3" value="correct"> best
+            </label><br>
+            <label>
+                <input type="radio" name="q3" value="incorrect"> better
+            </label><br>
+            <div id="result-q3" class="answer-box"></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-container">
+            <p>4. Choose the correct sentence:</p>
+            <label>
+                <input type="radio" name="q4" value="correct"> I have seen the movie already.
+            </label><br>
+            <label>
+                <input type="radio" name="q4" value="incorrect"> I seen the movie already.
+            </label><br>
+            <div id="result-q4" class="answer-box"></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-container">
+            <p>5. Choose the correct form of the word:</p>
+            <p>He is a very _____ speaker.</p>
+            <label>
+                <input type="radio" name="q5" value="correct"> good
+            </label><br>
+            <label>
+                <input type="radio" name="q5" value="incorrect"> well
+            </label><br>
+            <div id="result-q5" class="answer-box"></div>
+        </div>
+
+        <div class="center">
+            <button type="button" onclick="checkAnswers()">Submit Answers</button>
+            <button type="button" onclick="resetTest()">Take Test Again</button>
+        </div>
+    </form>
+
+    <!-- Back to Home Button -->
+    <div class="center">
+        <a href="../index.html" class="home-button">Back to Home</a>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            var correctAnswers = {
+                q1: 'correct',
+                q2: 'correct',
+                q3: 'correct',
+                q4: 'correct',
+                q5: 'correct'
+            };
+
+            // Loop through each question
+            for (var i = 1; i <= 5; i++) {
+                var selectedAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+                var resultDiv = document.getElementById('result-q' + i);
+
+                // Check if an answer is selected
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswers['q' + i]) {
+                        resultDiv.textContent = 'Correct!';
+                        resultDiv.className = 'answer-box correct';
+                    } else {
+                        resultDiv.textContent = 'Wrong!';
+                        resultDiv.className = 'answer-box incorrect';
+                    }
+                    resultDiv.style.display = 'block';  // Show the result box
+                } else {
+                    resultDiv.textContent = 'Please select an answer!';
+                    resultDiv.className = 'answer-box incorrect';
+                    resultDiv.style.display = 'block';  // Show the result box
+                }
+            }
+        }
+
+        function resetTest() {
+            // Uncheck all radio buttons
+            var radios = document.querySelectorAll('input[type="radio"]');
+            radios.forEach(function(radio) {
+                radio.checked = false;
+            });
+
+            // Hide all result boxes
+            var resultDivs = document.querySelectorAll('.answer-box');
+            resultDivs.forEach(function(resultDiv) {
+                resultDiv.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

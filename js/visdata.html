@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Literacy Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+        .answer-box {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .center {
+            text-align: center;
+        }
+        .home-button {
+            background-color: #008CBA; /* Blue color */
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #005f73; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Literacy Test</h1>
+
+    <form id="dataLiteracyForm">
+        <ol>
+            <li class="question-container">
+                <label for="q1">1. What is the primary value of data?</label><br>
+                <input type="radio" id="q1a" name="q1" value="a">
+                <label for="q1a">A. Its mere existence</label><br>
+                <input type="radio" id="q1b" name="q1" value="b">
+                <label for="q1b">B. The insights and actions it enables</label><br>
+                <input type="radio" id="q1c" name="q1" value="c">
+                <label for="q1c">C. The amount of data collected</label><br>
+                <div id="result-q1" class="answer-box"></div>
+            </li>
+
+            <li class="question-container">
+                <label for="q2">2. What percentage of employees rate basic data skills as very important for their day-to-day operations?</label><br>
+                <input type="radio" id="q2a" name="q2" value="a">
+                <label for="q2a">A. 50%</label><br>
+                <input type="radio" id="q2b" name="q2" value="b">
+                <label for="q2b">B. 87%</label><br>
+                <input type="radio" id="q2c" name="q2" value="c">
+                <label for="q2c">C. 75%</label><br>
+                <div id="result-q2" class="answer-box"></div>
+            </li>
+
+            <li class="question-container">
+                <label for="q3">3. Which of the following is NOT a data collection method mentioned?</label><br>
+                <input type="radio" id="q3a" name="q3" value="a">
+                <label for="q3a">A. Surveys</label><br>
+                <input type="radio" id="q3b" name="q3" value="b">
+                <label for="q3b">B. Interviews</label><br>
+                <input type="radio" id="q3c" name="q3" value="c">
+                <label for="q3c">C. Data mining</label><br>
+                <input type="radio" id="q3d" name="q3" value="d">
+                <label for="q3d">D. Social media posts</label><br>
+                <div id="result-q3" class="answer-box"></div>
+            </li>
+
+            <li class="question-container">
+                <label for="q4">4. What is the purpose of data visualization?</label><br>
+                <input type="radio" id="q4a" name="q4" value="a">
+                <label for="q4a">A. To make data more complex</label><br>
+                <input type="radio" id="q4b" name="q4" value="b">
+                <label for="q4b">B. To simplify complex information</label><br>
+                <input type="radio" id="q4c" name="q4" value="c">
+                <label for="q4c">C. To hide data patterns</label><br>
+                <div id="result-q4" class="answer-box"></div>
+            </li>
+
+            <li class="question-container">
+                <label for="q5">5. Which tool is NOT mentioned for improving data literacy skills?</label><br>
+                <input type="radio" id="q5a" name="q5" value="a">
+                <label for="q5a">A. Microsoft Excel</label><br>
+                <input type="radio" id="q5b" name="q5" value="b">
+                <label for="q5b">B. Google Sheets</label><br>
+                <input type="radio" id="q5c" name="q5" value="c">
+                <label for="q5c">C. Adobe Photoshop</label><br>
+                <div id="result-q5" class="answer-box"></div>
+            </li>
+        </ol>
+
+        <div class="center">
+            <button type="button" onclick="checkAnswers()">Submit Answers</button>
+            <button type="button" onclick="resetTest()">Take Test Again</button>
+        </div>
+    </form>
+
+    <!-- Back to Home Button -->
+    <div class="center">
+        <a href="../index.html" class="home-button">Back to Home</a>
+    </div>
+
+    <script>
+        // Correct answers for the test
+        const correctAnswers = {
+            q1: 'b',  // The insights and actions it enables
+            q2: 'b',  // 87%
+            q3: 'd',  // Social media posts
+            q4: 'b',  // To simplify complex information
+            q5: 'c'   // Adobe Photoshop
+        };
+
+        // Function to check answers
+        function checkAnswers() {
+            // Loop through all questions
+            for (let i = 1; i <= 5; i++) {
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                const resultDiv = document.getElementById(`result-q${i}`);
+
+                if (selectedAnswer) {
+                    // Check if the selected answer is correct
+                    if (selectedAnswer.value === correctAnswers[`q${i}`]) {
+                        resultDiv.textContent = 'Correct!';
+                        resultDiv.className = 'answer-box correct';
+                    } else {
+                        resultDiv.textContent = 'Wrong!';
+                        resultDiv.className = 'answer-box incorrect';
+                    }
+                    resultDiv.style.display = 'block';  // Show the result box
+                } else {
+                    resultDiv.textContent = 'Please select an answer!';
+                    resultDiv.className = 'answer-box incorrect';
+                    resultDiv.style.display = 'block';  // Show the result box
+                }
+            }
+        }
+
+        // Function to reset the test
+        function resetTest() {
+            // Uncheck all radio buttons
+            const radios = document.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+
+            // Hide all result boxes
+            const resultDivs = document.querySelectorAll('.answer-box');
+            resultDivs.forEach(resultDiv => {
+                resultDiv.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
